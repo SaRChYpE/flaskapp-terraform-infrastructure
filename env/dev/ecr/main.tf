@@ -2,7 +2,7 @@ provider "aws" {
   region = var.region
 }
 
-module "bucket" {
+module "ecr" {
   source = "../../../modules/ecr"
-  ecr_name = "dev-ecr-repo"
+  ecr_name = "flaskapp"
 }
