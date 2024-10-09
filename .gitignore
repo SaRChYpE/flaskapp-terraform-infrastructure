@@ -1,0 +1,21 @@
+# Terraform
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfvars
+**/*.tfvars.json
+**/.terraform/
+**/.terraform.lock.hcl
+
+# AWS CLI configuration files
+**/.aws/
+**/.aws-credentials
+
+# IDE specific files
+.idea/
+**/*.swp
+
+# Local environment files
+**/.env
+
+# Terraform plan files
+**/*.tfplan
