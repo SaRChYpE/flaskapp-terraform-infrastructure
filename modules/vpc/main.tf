@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "main" {
- cidr_block           = var.vpc_cidr
+ cidr_block           = var.cidr_block
  enable_dns_hostnames = true
  tags = {
    name = "${var.env}-flask-app"
