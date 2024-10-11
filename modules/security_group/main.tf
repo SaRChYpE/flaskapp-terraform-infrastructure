@@ -1,6 +1,6 @@
 resource "aws_security_group" "security_group" {
  name   = "${var.env}-ecs-flaskapp-security-group"
- vpc_id = aws_vpc.main.id
+ vpc_id = var.vpc_id
 
  ingress {
    from_port   = 0
