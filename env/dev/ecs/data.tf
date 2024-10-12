@@ -1,8 +1,8 @@
-data "terraform_remote_state" "vpc" {
+data "terraform_remote_state" "asg" {
   backend = "s3"
   config = {
     bucket = "dev-sarchype-bucket"
-    key    = "terraform/vpc/state/terraform.tfstate"
+    key    = "terraform/asg/state/terraform.tfstate"
     region = "eu-central-1"
   }
 }
@@ -21,6 +21,15 @@ data "terraform_remote_state" "sg" {
   config = {
     bucket = "dev-sarchype-bucket"
     key    = "terraform/sg/state/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
+
+data "terraform_remote_state" "alb" {
+  backend = "s3"
+  config = {
+    bucket = "dev-sarchype-bucket"
+    key    = "terraform/alb/state/terraform.tfstate"
     region = "eu-central-1"
   }
 }

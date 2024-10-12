@@ -31,9 +31,9 @@ resource "aws_ecs_cluster_capacity_providers" "example" {
 
 resource "aws_ecs_task_definition" "ecs_task_definition" {
 
- family             = "${var.env}=flaskapp-task"
+ family             = "${var.env}-flaskapp-task"
  network_mode       = "awsvpc"
- execution_role_arn = "arn:aws:iam::532199187081:role/ecsTaskExecutionRole"
+ execution_role_arn = "arn:aws:iam::376648005210:role/ecsTaskExecutionRole"
  cpu                = 256
 
  runtime_platform {
@@ -43,15 +43,15 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 
  container_definitions = jsonencode([
    {
-     name      = "dockergs"
-     image     = "public.ecr.aws/f9n5f1l7/dgs:latest"
+     name      = "flaskapp"
+     image     = "376648005210.dkr.ecr.eu-central-1.amazonaws.com/flaskapp:1.0.0"
      cpu       = 256
      memory    = 512
      essential = true
      portMappings = [
        {
          containerPort = 5000
-         hostPort      = 80
+         hostPort      = 5000
          protocol      = "tcp"
        }
      ]
@@ -89,8 +89,8 @@ resource "aws_ecs_service" "ecs_service" {
 
  load_balancer {
    target_group_arn = var.ecs_tg_arn
-   container_name   = "dockergs"
-   container_port   = 80
+   container_name   = "flaskapp"
+   container_port   = 5000
  }
- depends_on = [aws_autoscaling_group.ecs_asg]
+ depends_on = [var.ecs_asg]
 }
