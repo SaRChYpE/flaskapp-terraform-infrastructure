@@ -1,7 +1,9 @@
-variable "ecs_asg_arn" {}
-variable "subnet_id" {}
-variable "subnet2_id" {}
-variable "sg_id" {}
 variable "env" {
-    default = "test"
+  description = "Environment name"
+  type        = string
+}
+
+variable "ecs_asg_arn" {
+  description = "ARN of the ECS Auto Scaling Group"
+  type        = string
 }

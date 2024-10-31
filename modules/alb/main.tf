@@ -7,7 +7,7 @@ resource "aws_lb" "ecs_alb" {
  subnets            = [var.subnet_id, var.subnet2_id]
 
  tags = {
-   Name = "{$var.env}-ecs-alb"
+   name = "${var.env}-ecs-alb"
  }
 }
 
@@ -29,13 +29,14 @@ resource "aws_lb_listener" "ecs_alb_listener" {
 
 resource "aws_lb_target_group" "ecs_tg" {
 
- name        = "{$ver.env}-ecs-tg"
- port        = 80
+ name        = "${var.env}-ecs-tg"
+ port        = 5000
  protocol    = "HTTP"
  target_type = "ip"
  vpc_id      = var.vpc_id
 
  health_check {
    path = "/"
+   port = "5000"
  }
 }
